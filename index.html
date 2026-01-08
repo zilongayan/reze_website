@@ -1,19 +1,253 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tribute site to Reze from Chainsaw Man - Immersive otaku experience with animations, music and fan content">
+    <title>REZE | Chainsaw Man</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-title">REZE</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">REZE</a>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#quote" class="nav-link">Quotes</a></li>
+                <li><a href="#videos" class="nav-link">Videos</a></li>
+                <li><a href="#final" class="nav-link">About</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <span>↑</span>
+    </button>
+    <!-- Particules flottantes -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Audio Player -->
+    <div class="audio-player" id="audioPlayer">
+        <button class="audio-btn" id="audioToggle">
+            <span class="audio-icon">🎵</span>
+            <span class="audio-text">Play Music</span>
+        </button>
+        <audio id="backgroundAudio" loop>
+            <source src="./audio/Chainsaw Man  The Movie_ Reze Arc - Theme Song FULL IRIS OUT by Kenshi Yonezu (Lyrics).mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <img src="./reze/chainsaw-man-csm.gif" alt="Reze" class="hero-gif" loading="eager">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title glitch" data-text="REZE">REZE</h1>
+            <p class="hero-subtitle">The Bomb Devil</p>
+            <button class="enter-btn" id="enterBtn">Enter the Madness</button>
+        </div>
+        <div class="scroll-indicator">
+            <span>▼</span>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Reze Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in" data-gallery-img="./reze/reze-chainsaw-man.gif">
+                    <img src="./reze/reze-chainsaw-man.gif" alt="Reze" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/reze-dancing-reze-dance.gif">
+                    <img src="./reze/reze-dancing-reze-dance.gif" alt="Reze Dance" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/denji-reze.gif">
+                    <img src="./reze/denji-reze.gif" alt="Denji & Reze" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/giphy-1.gif">
+                    <img src="./reze/reze-chainsaw-man.webp" alt="Reze" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/giphy-2.gif">
+                    <img src="./reze/giphy-2.gif" alt="Reze" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/giphy-3.gif">
+                    <img src="./reze/giphy-3.gif" alt="Reze" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/giphy-4.gif">
+                    <img src="./reze/giphy-4.gif" alt="Reze" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/reze-chainsaw-man-2.gif">
+                    <img src="./reze/reze-chainsaw-man-2.gif" alt="Reze" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/reze-chainsaw-man-3.gif">
+                    <img src="./reze/reze-chainsaw-man-3.gif" alt="Reze" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/reze-tongue-out-reze-chainsaw-man-moving-her-head.gif">
+                    <img src="./reze/reze-tongue-out-reze-chainsaw-man-moving-her-head.gif" alt="Reze Tongue Out" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/reze-reze-csm.gif">
+                    <img src="./reze/reze-reze-csm.gif" alt="Reze CSM" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/honkai-star-rail-dance.gif">
+                    <img src="./reze/reze-dance.webp" alt="Reze Dance" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/Christmas Anime Girl GIF.gif">
+                    <img src="./reze/Christmas Anime Girl GIF.gif" alt="Reze Christmas" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/giphy.gif">
+                    <img src="./reze/giphy.gif" alt="Reze Giphy" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item fade-in" data-gallery-img="./reze/reze-chainsaw-man-1.gif">
+                    <img src="./reze/reze_bye.gif" alt="Reze Chainsaw Man Bye" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mood / Quote Section -->
+    <section class="quote-section" id="quote">
+        <div class="quote-background">
+            <img src="./reze/reze-csm-reze.gif" alt="Reze Background" class="quote-bg-gif">
+        </div>
+        <div class="quote-overlay"></div>
+        <div class="container">
+            <div class="quotes-container">
+                <div class="quote-card fade-in">
+                    <p class="quote-text">"I want to be loved by someone... But that's impossible for someone like me."</p>
+                </div>
+                <div class="quote-card fade-in">
+                    <p class="quote-text">"Even if it's a lie, I want to believe in the bonds we created."</p>
+                </div>
+                <div class="quote-card fade-in">
+                    <p class="quote-text">"Denji... I really enjoyed our time together."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section" id="videos">
+        <div class="container">
+            <h2 class="section-title">Reze Edits / Fan Videos</h2>
+            <div class="video-grid">
+                <!-- Video 1 - Reze Edit -->
+                <div class="video-card fade-in">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/Cb0JZhdmjtg?autoplay=0&mute=1&controls=1&rel=0" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            class="video-iframe"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video-overlay-glow"></div>
+                </div>
+                
+                <!-- Video 2 - Reze Shorts -->
+                <div class="video-card fade-in">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/o2rrJ7FDi-g?autoplay=0&mute=1&controls=1&rel=0" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            class="video-iframe"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video-overlay-glow"></div>
+                </div>
+                
+                <!-- Video 3 - Reze Edit -->
+                <div class="video-card fade-in">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/8ezWzKj0fxA?autoplay=0&mute=1&controls=1&rel=0" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            class="video-iframe"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video-overlay-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Section -->
+    <section class="final-section" id="final">
+        <div class="final-background">
+            <img src="./reze/reze-tongue-out-reze-chainsaw-man-moving-her-head.gif" alt="Reze Final" class="final-gif">
+        </div>
+        <div class="final-overlay"></div>
+        <div class="final-content">
+            <h2 class="final-title">REZE FOREVER</h2>
+            <p class="final-text">The Bomb Devil Will Always Be Remembered</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Reze Tribute | Chainsaw Man</p>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">×</button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+        <button class="lightbox-next" id="lightboxNext" aria-label="Next image">›</button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightboxImage" class="lightbox-img">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
+
