@@ -1359,6 +1359,30 @@ body.shake {
     animation: shake 0.1s infinite;
 }
 
+/* Désactiver le shake quand la lightbox est ouverte */
+body.lightbox-open {
+    animation: none !important;
+}
+
+body:has(.lightbox.active) {
+    animation: none !important;
+}
+
+.lightbox.active,
+.lightbox.active * {
+    animation: none !important;
+    transform: none !important;
+}
+
+/* Désactiver le shake quand la lightbox est ouverte */
+body:has(.lightbox.active) {
+    animation: none !important;
+}
+
+.lightbox.active {
+    animation: none !important;
+}
+
 @keyframes shake {
     0%, 100% { transform: translate(0); }
     10% { transform: translate(-1px, -1px) rotate(-0.5deg); }

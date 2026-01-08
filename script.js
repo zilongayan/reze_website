@@ -409,21 +409,39 @@ galleryItems.forEach(item => {
 
 // Open lightbox
 galleryItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
+        // Empêcher la propagation de l'événement qui pourrait déclencher le shake
+        e.stopPropagation();
+        e.preventDefault();
+        
         currentImageIndex = index;
         openLightbox(galleryImages[currentImageIndex]);
     });
 });
 
 function openLightbox(imgSrc) {
+    // Désactiver le shake effect quand la lightbox s'ouvre
+    document.body.classList.remove('shake');
+    document.body.classList.add('lightbox-open');
+    
     lightboxImage.src = imgSrc;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+    document.body.style.animation = 'none';
+    document.body.style.transform = 'none';
 }
 
 function closeLightbox() {
     lightbox.classList.remove('active');
+    document.body.classList.remove('lightbox-open');
     document.body.style.overflow = '';
+    document.body.style.animation = '';
+    document.body.style.transform = '';
+    
+    // Réactiver le shake si la musique joue toujours
+    if (backgroundAudio && !backgroundAudio.paused) {
+        document.body.classList.add('shake');
+    }
 }
 
 function showNextImage() {
