@@ -1,0 +1,9 @@
+{
+  "name": "reze-website",
+  "version": "1.0.0",
+  "description": "REZE Tribute Site - Chainsaw Man",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'"
+  }
+}
+
