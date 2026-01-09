@@ -26,9 +26,40 @@ function createParticles() {
 const audioToggle = document.getElementById('audioToggle');
 const backgroundAudio = document.getElementById('backgroundAudio');
 let audioInitialized = false;
+let shakeEnabled = true; // État du shake (activé par défaut)
 
 // Volume modéré (30%)
 backgroundAudio.volume = 0.3;
+
+// ========================================
+// SHAKE TOGGLE CONTROL
+// ========================================
+const shakeToggle = document.getElementById('shakeToggle');
+
+// Fonction pour activer/désactiver le shake
+function toggleShake() {
+    shakeEnabled = !shakeEnabled;
+    
+    if (shakeEnabled) {
+        // Réactiver le shake si la musique joue
+        if (!backgroundAudio.paused) {
+            document.body.classList.add('shake');
+        }
+        shakeToggle.classList.add('active');
+        shakeToggle.querySelector('.shake-text').textContent = 'Shake On';
+    } else {
+        // Désactiver le shake
+        document.body.classList.remove('shake');
+        shakeToggle.classList.remove('active');
+        shakeToggle.querySelector('.shake-text').textContent = 'Shake Off';
+    }
+}
+
+// Gérer le clic sur le bouton shake toggle
+shakeToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleShake();
+});
 
 // Initialiser l'audio après interaction utilisateur
 function initializeAudio() {
@@ -62,7 +93,10 @@ audioToggle.addEventListener('click', (e) => {
         backgroundAudio.play().then(() => {
             audioToggle.classList.add('playing');
             audioToggle.querySelector('.audio-text').textContent = 'Playing';
-            document.body.classList.add('shake');
+            // Activer le shake seulement si activé
+            if (shakeEnabled) {
+                document.body.classList.add('shake');
+            }
         }).catch(err => {
             console.log('Error playing audio:', err);
         });
@@ -90,7 +124,10 @@ function startMusicOnInteraction() {
             // Musique lancée avec succès
             audioToggle.classList.add('playing');
             audioToggle.querySelector('.audio-text').textContent = 'Playing';
-            document.body.classList.add('shake');
+            // Activer le shake seulement si activé
+            if (shakeEnabled) {
+                document.body.classList.add('shake');
+            }
         }).catch(err => {
             console.log('Error auto-playing audio:', err);
         });
@@ -120,7 +157,10 @@ enterBtn.addEventListener('click', (e) => {
         backgroundAudio.play().then(() => {
             audioToggle.classList.add('playing');
             audioToggle.querySelector('.audio-text').textContent = 'Playing';
-            document.body.classList.add('shake');
+            // Activer le shake seulement si activé
+            if (shakeEnabled) {
+                document.body.classList.add('shake');
+            }
             audioInitialized = true;
         }).catch(err => {
             console.log('Error playing audio:', err);
@@ -218,7 +258,10 @@ let isManualPause = false;
 backgroundAudio.addEventListener('pause', () => {
     // Ne mettre à jour le bouton que si c'est une pause manuelle
     if (isManualPause) {
-        document.body.classList.remove('shake');
+        // Retirer le shake seulement si activé
+        if (shakeEnabled) {
+            document.body.classList.remove('shake');
+        }
         audioToggle.classList.remove('playing');
         audioToggle.querySelector('.audio-text').textContent = 'Play Music';
     }
@@ -438,8 +481,8 @@ function closeLightbox() {
     document.body.style.animation = '';
     document.body.style.transform = '';
     
-    // Réactiver le shake si la musique joue toujours
-    if (backgroundAudio && !backgroundAudio.paused) {
+    // Réactiver le shake si la musique joue toujours et si le shake est activé
+    if (backgroundAudio && !backgroundAudio.paused && shakeEnabled) {
         document.body.classList.add('shake');
     }
 }
@@ -490,16 +533,20 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks[0].classList.add('active');
     }
     
+    // Initialiser l'état du bouton shake toggle
+    if (shakeToggle) {
+        if (shakeEnabled) {
+            shakeToggle.classList.add('active');
+            shakeToggle.querySelector('.shake-text').textContent = 'Shake On';
+        } else {
+            shakeToggle.classList.remove('active');
+            shakeToggle.querySelector('.shake-text').textContent = 'Shake Off';
+        }
+    }
+    
     console.log('🎸 REZE Tribute Site Loaded!');
 });
 
-// ========================================
-// MOBILE MENU (si besoin)
-// ========================================
-// Fonction pour désactiver le shake sur mobile (optionnel)
-if (window.innerWidth < 768) {
-    document.body.classList.remove('shake');
-}
 
 // ========================================
 // PREVENT RIGHT-CLICK ON IMAGES (optional)

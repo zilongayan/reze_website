@@ -101,12 +101,17 @@ body::before {
     top: 80px;
     right: 20px;
     z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
 }
 
 @media (max-width: 768px) {
     .audio-player {
         top: 70px;
         right: 15px;
+        gap: 8px;
     }
 }
 
@@ -114,6 +119,7 @@ body::before {
     .audio-player {
         top: 65px;
         right: 10px;
+        gap: 6px;
     }
 }
 
@@ -156,6 +162,57 @@ body::before {
     }
     50% {
         box-shadow: 0 0 40px rgba(255, 0, 128, 0.8);
+    }
+}
+
+/* ========================================
+   SHAKE TOGGLE BUTTON
+   ======================================== */
+.shake-toggle-btn {
+    background: rgba(255, 64, 0, 0.2);
+    border: 2px solid #ff4000;
+    color: #ff4000;
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(255, 64, 0, 0.3);
+}
+
+.shake-toggle-btn:hover {
+    background: rgba(255, 64, 0, 0.4);
+    box-shadow: 0 0 30px rgba(255, 64, 0, 0.6);
+    transform: scale(1.05);
+}
+
+.shake-toggle-btn.active {
+    background: rgba(255, 64, 0, 0.5);
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 40px rgba(255, 64, 0, 0.8);
+}
+
+.shake-icon {
+    font-size: 18px;
+}
+
+.shake-text {
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+    .shake-toggle-btn .shake-text {
+        display: none;
+    }
+    
+    .shake-toggle-btn {
+        padding: 10px 15px;
     }
 }
 
@@ -1359,6 +1416,31 @@ body.shake {
     animation: shake 0.1s infinite;
 }
 
+/* Shake moins intense sur mobile pour faciliter le scroll */
+@media (max-width: 768px) {
+    body.shake {
+        animation: shakeMobile 0.15s infinite;
+    }
+    
+    /* Améliorer le scroll sur mobile même avec shake */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Section scrollable séparément pour éviter les conflits */
+    section {
+        position: relative;
+        will-change: transform;
+    }
+}
+
 /* Désactiver le shake quand la lightbox est ouverte */
 body.lightbox-open {
     animation: none !important;
@@ -1394,5 +1476,13 @@ body:has(.lightbox.active) {
     70% { transform: translate(-1px, -1px) rotate(-0.5deg); }
     80% { transform: translate(1px, 1px) rotate(0.5deg); }
     90% { transform: translate(-1px, 1px) rotate(-0.5deg); }
+}
+
+/* Shake plus subtil sur mobile pour ne pas gêner le scroll */
+@keyframes shakeMobile {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-0.5px, -0.5px); }
+    50% { transform: translate(0.5px, 0.5px); }
+    75% { transform: translate(-0.5px, 0.5px); }
 }
 
